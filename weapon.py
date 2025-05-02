@@ -85,7 +85,7 @@ class Sword(Weapon):
                     time.sleep(0.05)
                 print()
                 time.sleep(0.5)
-                temp_text = "Choose a skill: "
+                temp_text = "Choose a skill(Input 4 to leave): "
                 for letter in temp_text:
                     sys.stdout.write(letter)
                     sys.stdout.flush()
