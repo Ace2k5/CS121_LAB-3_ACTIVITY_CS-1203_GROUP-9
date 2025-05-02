@@ -21,12 +21,94 @@ class Sword(Weapon):
         return int(damage1)
 
 class Gun(Weapon):
-    def __init__(self, name_weapon, ammo_count):
+    def __init__(self, name_weapon, type_gun):
         super().__init__(name_weapon)
-        self.ammo_count = ammo_count
+        self._type_gun = type_gun
     def damage(self):
-        self.damage = random.randint(100, 200)
-        return int(self.damage)
+        if self._type_gun == "Pistol":
+            ammo = 12
+            temp_list = []
+            temp_total_damage = 0
+            while ammo > 0:
+                ammo -=1
+                chance = 0.1
+                chance_number = round(random.random(), 2)
+                print(chance_number)
+                damage1 = random.randint(50, 100)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have missed.")
+                time.sleep(1)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+        
+
+        elif self._type_gun == "Rifle":
+            ammo = 30
+            temp_list = []
+            temp_total_damage = 0
+            while ammo > 0:
+                ammo -=1
+                chance = 0.2
+                chance_number = round(random.random(), 2)
+                print(chance_number)
+                damage1 = random.randint(50, 100)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have missed.")
+                time.sleep(0.2)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+        
+
+        elif self._type_gun == "Sniper":
+            ammo = 5
+            temp_list = []
+            temp_total_damage = 0
+            while ammo > 0:
+                ammo -=1
+                chance = 0.01
+                chance_number = round(random.random(), 2)
+                print(chance_number)
+                damage1 = random.randint(100, 5000)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have missed.")
+                time.sleep(2)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+        
+
+        elif self._type_gun == "Shotgun":
+            ammo = 9
+            temp_list = []
+            temp_total_damage = 0
+            chance = 0.45
+            while ammo > 0:
+                ammo -=1
+                for i in range(9):
+                    chance_number = round(random.random(), 2)
+                    print(chance_number)
+                    damage1 = random.randint(50, 100)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have missed.")
+                print("Stabilizing...")
+                time.sleep(1)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
     
 class Bow(Weapon):
     def __init__(self, name_weapon, range):
@@ -34,33 +116,45 @@ class Bow(Weapon):
         self._range = range
     
     def damage(self):
-        self.damage = random.randint(70, 120)
-        return self.damage
+        damage1 = random.randint(70, 120)
+        return damage1
 
 class RocketLauncher(Weapon):
     def __init__(self, name_weapon):
         super().__init__(name_weapon)
 
 def random_weapon():
-    x = 1
+    x = 2
     print(f"You have rolled {x}")
+
     if x == 1:
         option = ["NONE", "Iron", "Wood", "Copper", "Silver"]
-        temp_list = []
         temp1 = str(input("Choose a name for the sword: "))
         if temp1 == "":
             print("Enter a valid name.")
+            return
         print(f"You have a total of {len(option) - 1} of choices. Choose one:")
         for i in range(1, len(option)):
             print(f"{i} for {option[i]}")
         temp2 = int(input("Choose between 1-4: "))
         sword_temp = Sword(temp1, option[temp2])
         return sword_temp
-    if x == 2:
-        gun_temp = Gun()
+    
+    elif x == 2:
+        option = ["NONE", "Pistol", "Rifle", "Sniper", "Shotgun"]
+        temp1 = str(input("Choose a name for the gun: "))
+        if temp1 == "":
+            print("Enter a valid name.")
+            return
+        print(f"You have a total of {len(option) - 1} of choices. Choose one:")
+        for i in range(1, len(option)):
+            print(f"{i} for {option[i]}")
+        temp2 = int(input("Choose between 1-4: "))
+        gun_temp = Gun(temp1, option[temp2])
+        return gun_temp
     
 
 
 
 a = random_weapon()
-print(a.damage())
+a.damage()
