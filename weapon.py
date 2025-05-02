@@ -23,6 +23,12 @@ REQUIEM_SOUNDS = [
 ]
 LEAVE_SOUND = sound_folder / "leave.mp3"
 pygame.mixer.init()
+def play_music():
+    pygame.mixer.music.load(f"{sound_folder}/erlking_theme.mp3")
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play(-1)
+def stop_music():
+    pygame.mixer.music.stop()
 
 class Weapon(ABC):
     def __init__(self, name_weapon):
@@ -39,6 +45,7 @@ class Sword(Weapon):
 
     def damage(self):
         if self._material == "Erlking's Greatsword":
+            play_music()
             entry = pygame.mixer.Sound(str(AWAKENING))
             entry.play()
             temp_text = "I have returned once again."
@@ -85,7 +92,7 @@ class Sword(Weapon):
                     time.sleep(0.05)
                 print()
                 time.sleep(0.5)
-                temp_text = "Choose a skill(Input 4 to leave): "
+                temp_text = "Choose a skill: "
                 for letter in temp_text:
                     sys.stdout.write(letter)
                     sys.stdout.flush()
@@ -180,7 +187,7 @@ class Sword(Weapon):
                             sound = pygame.mixer.Sound(REQUIEM_SOUNDS[1])
                             sound.play()
                             while pygame.mixer.get_busy():
-                                time.sleep(0.01)
+                                time.sleep(1)
                         sound = pygame.mixer.Sound(LIST_OF_SOUNDS_ERLKING[2])
                         sound.play()
                         damage = random.randint(100, 135)
@@ -190,12 +197,13 @@ class Sword(Weapon):
                         sound = pygame.mixer.Sound(REQUIEM_SOUNDS[2])
                         sound.play()
                         while pygame.mixer.get_busy():
-                            time.sleep(1)
+                            time.sleep(0.01)
                     for i in range(len(temp_list)):
                         temp_sum += temp_list[i]
                     print(f"You have dealt a total of: {temp_sum} while doing 2 blunt attacks.")
                     continue
                 elif temp_input == 4:
+                    stop_music()
                     sound = pygame.mixer.Sound(LEAVE_SOUND)
                     sound.play()
                     text1 = "What a sorry mess this is..."
