@@ -1,11 +1,10 @@
 import random
 from abc import ABC, abstractmethod
 import time
-import keyboard
 
 class Weapon(ABC):
     def __init__(self, name_weapon):
-        self.__name_weapon = name_weapon
+        self._name_weapon = name_weapon
     def damage(self):
         pass
     def reload(self):
@@ -17,9 +16,86 @@ class Sword(Weapon):
         self._material = material
 
     def damage(self):
-        damage1 = random.randint(30, 70)
-        return int(damage1)
-
+        if self._material == "Iron":
+            slash = random.randint(1,8)
+            temp_slash = slash
+            temp_list = []
+            temp_total_damage = 0
+            while slash > 0:
+                slash -=1
+                chance = 0.1
+                chance_number = round(random.random(), 2)
+                damage1 = random.randint(50, 100)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have been parried.")
+                time.sleep(1)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+        
+        elif self._material == "Wood":
+            slash = random.randint(1,4)
+            temp_slash = slash
+            temp_list = []
+            temp_total_damage = 0
+            while slash > 0:
+                slash -=1
+                chance = 0.3
+                chance_number = round(random.random(), 2)
+                damage1 = random.randint(10, 30)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have been parried.")
+                time.sleep(1)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+        
+        elif self._material == "Copper":
+            slash = random.randint(1,6)
+            temp_slash = slash
+            temp_list = []
+            temp_total_damage = 0
+            while slash > 0:
+                slash -=1
+                chance = 0.2
+                chance_number = round(random.random(), 2)
+                damage1 = random.randint(20, 50)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have been parried.")
+                time.sleep(1)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+        
+        elif self._material == "Silver":
+            slash = random.randint(1,7)
+            temp_slash = slash
+            temp_list = []
+            temp_total_damage = 0
+            while slash > 0:
+                slash -=1
+                chance = 0.15
+                chance_number = round(random.random(), 2)
+                damage1 = random.randint(40, 80)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have been parried.")
+                time.sleep(1)
+            for i in range(len(temp_list)):
+                temp_total_damage += temp_list[i]
+            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+        
 class Gun(Weapon):
     def __init__(self, name_weapon, type_gun):
         super().__init__(name_weapon)
@@ -33,7 +109,7 @@ class Gun(Weapon):
                 ammo -=1
                 chance = 0.1
                 chance_number = round(random.random(), 2)
-                print(chance_number)
+                
                 damage1 = random.randint(50, 100)
                 if chance_number > chance:
                     print(f"You have inflicted: {damage1} points of damage.")
@@ -54,7 +130,7 @@ class Gun(Weapon):
                 ammo -=1
                 chance = 0.2
                 chance_number = round(random.random(), 2)
-                print(chance_number)
+                
                 damage1 = random.randint(50, 100)
                 if chance_number > chance:
                     print(f"You have inflicted: {damage1} points of damage.")
@@ -75,7 +151,7 @@ class Gun(Weapon):
                 ammo -=1
                 chance = 0.01
                 chance_number = round(random.random(), 2)
-                print(chance_number)
+                
                 damage1 = random.randint(100, 5000)
                 if chance_number > chance:
                     print(f"You have inflicted: {damage1} points of damage.")
@@ -97,7 +173,7 @@ class Gun(Weapon):
                 ammo -=1
                 for i in range(9):
                     chance_number = round(random.random(), 2)
-                    print(chance_number)
+                    
                     damage1 = random.randint(50, 100)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
@@ -171,10 +247,11 @@ class RocketLauncher(Weapon):
         return total_damage
 
 def random_weapon():
-    x = 3
-    print(f"You have rolled {x}")
+    x = random.randint(1,3)
+    print(f"You have rolled {x}.")
 
     if x == 1:
+        print("You have been given a Sword!")
         option = ["NONE", "Iron", "Wood", "Copper", "Silver"]
         temp1 = str(input("Choose a name for the sword: "))
         if temp1 == "":
@@ -188,6 +265,7 @@ def random_weapon():
         return sword_temp
     
     elif x == 2:
+        print("You have been given a Gun!")
         option = ["NONE", "Pistol", "Rifle", "Sniper", "Shotgun"]
         temp1 = str(input("Choose a name for the gun: "))
         if temp1 == "":
@@ -201,6 +279,7 @@ def random_weapon():
         return gun_temp
         
     elif x == 3:
+        print("You have been given a Rocket Launcher!")
         option = ["NONE", "Explosive", "Nuclear"]
         temp1 = str(input("Choose a name for the rocket launcher: "))
         if temp1 == "":
@@ -213,5 +292,8 @@ def random_weapon():
         rocket_temp = RocketLauncher(temp1, option[temp2])
         return rocket_temp
     
+
 a = random_weapon()
 a.damage()
+
+#Changes ko (Basty) dito ay tinanggal ko muna ung mga miss chances na print, nilagyan ko na don sa sword class, naglagay den ako ng print("You have been given a Sword!") kada weapon. yon lungs
