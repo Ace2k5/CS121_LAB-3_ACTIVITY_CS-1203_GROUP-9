@@ -1,6 +1,28 @@
 import random
 from abc import ABC, abstractmethod
-import time
+import time, sys
+from pathlib import Path
+import pygame
+### ----------IMPORTANT FOR ERLKING GREATSWORD-------- ###
+sound_folder = Path("CS121_LAB-3_ACTIVITY_CS-1203_GROUP-9/sounds")
+AWAKENING = sound_folder / "Erlking's_AWAKENING.mp3"
+LIST_OF_SOUNDS_ERLKING = [
+    sound_folder / "battle1.mp3",
+    sound_folder / "battle2.mp3",
+    sound_folder / "battle3.mp3",
+    sound_folder / "battle4.mp3",
+    sound_folder / "battle5.mp3"
+]
+LIST_OF_SWORDSOUNDS = [
+    sound_folder / "sound2.mp3"
+]
+REQUIEM_SOUNDS = [
+    sound_folder / "requiem1.mp3",
+    sound_folder / "requiem2.mp3",
+    sound_folder / "requiem3.mp3"
+]
+LEAVE_SOUND = sound_folder / "leave.mp3"
+pygame.mixer.init()
 
 class Weapon(ABC):
     def __init__(self, name_weapon):
@@ -16,6 +38,193 @@ class Sword(Weapon):
         self._material = material
 
     def damage(self):
+        if self._material == "Erlking's Greatsword":
+            entry = pygame.mixer.Sound(str(AWAKENING))
+            entry.play()
+            temp_text = "I have returned once again."
+            temp_text2 = " To face Catherine..."
+            temp_text3 = " and the accursed wretches of the manor."
+            sound = pygame.mixer.Sound(str(AWAKENING))
+            sound.play
+            for letter in temp_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
+            time.sleep(0.9)
+            for letter in temp_text2:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
+            time.sleep(0.8)
+            for letter in temp_text3:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
+            while pygame.mixer.get_busy():
+                    time.sleep(1)
+            while True:
+                temp_text = "1. Beheading ⦿⦿ (WRATH)"
+                temp_text2 = "2. Memorial Processing ⦿⦿⦿ (ENVY)"
+                temp_text3 = "3. Requiem ⦿⦿ (GLOOM)"
+                print()
+                for letter in temp_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                print()
+                time.sleep(0.5)
+                for letter in temp_text2:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                print()
+                time.sleep(0.5)
+                for letter in temp_text3:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                print()
+                time.sleep(0.5)
+                temp_text = "Choose a skill: "
+                for letter in temp_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                time.sleep(0.05)
+                temp_input = int(input(""))
+                if temp_input == 1:
+                    slash = 2
+                    temp_list = []
+                    temp_sum = 0
+                    while slash > 0:
+                        temp_text = "Beheading ⦿⦿ (WRATH)"
+                        for letter in temp_text:
+                            sys.stdout.write(letter)
+                            sys.stdout.flush()
+                            time.sleep(0.05)
+                        time.sleep(0.05)
+                        sound_select = random.randint(0, 4)
+                        sound = pygame.mixer.Sound(LIST_OF_SOUNDS_ERLKING[sound_select])
+                        sound.play()
+                        time.sleep(0.5)
+                        print()
+                        sword_sound = 0
+                        for i in range(2):
+                            damage = random.randint(10, 50)
+                            sound = pygame.mixer.Sound(LIST_OF_SWORDSOUNDS[sword_sound])
+                            sound.play()
+                            print(f"You have dealt: {damage} amount of damage.")
+                            slash -= 1
+                            temp_list.append(damage)
+                            while pygame.mixer.get_busy():
+                                time.sleep(0.01)
+                        for i in range(len(temp_list)):
+                            temp_sum += temp_list[i]
+                        print(f"You have dealt: {temp_sum} amount of damage in two slashes.")
+                        continue  
+                elif temp_input == 2:
+                    slash = 3
+                    temp_list = []
+                    temp_sum = 0
+                    while slash > 0:
+                        temp_text = "Memorial Processing ⦿⦿⦿ (ENVY)"
+                        for letter in temp_text:
+                            sys.stdout.write(letter)
+                            sys.stdout.flush()
+                            time.sleep(0.05)
+                        time.sleep(0.05)
+                        sound_select = random.randint(0, 4)
+                        sound = pygame.mixer.Sound(LIST_OF_SOUNDS_ERLKING[sound_select])
+                        sound.play()
+                        time.sleep(0.5)
+                        print()
+                        sword_sound = 0
+                        for i in range(3):
+                            damage = random.randint(5, 35)
+                            sound = pygame.mixer.Sound(LIST_OF_SWORDSOUNDS[sword_sound])
+                            sound.play()
+                            print(f"You have dealt: {damage} amount of damage.")
+                            slash -= 1
+                            temp_list.append(damage)
+                            while pygame.mixer.get_busy():
+                                time.sleep(0.01)
+                        for i in range(len(temp_list)):
+                            temp_sum += temp_list[i]
+                        print(f"You have dealt: {temp_sum} amount of damage in three slashes.")
+                        continue
+                elif temp_input == 3:
+                    slash = 2
+                    temp_list = []
+                    temp_sum = 0
+                    while slash > 0:
+                        temp_text = "REQUIEM ⦿⦿ (GLOOM)"
+                        for letter in temp_text:
+                            sys.stdout.write(letter)
+                            sys.stdout.flush()
+                            time.sleep(0.05)
+                        time.sleep(0.05)
+                        sound_select = random.randint(0, 4)
+                        sound = pygame.mixer.Sound(LIST_OF_SOUNDS_ERLKING[sound_select])
+                        sound.play()
+                        time.sleep(0.5)
+                        print()
+                        damage = random.randint(50, 80)
+                        sound = pygame.mixer.Sound(REQUIEM_SOUNDS[0])
+                        sound.play()
+                        print(f"You have dealt: {damage} amount of damage.")
+                        slash = 1
+                        temp_list.append(damage)
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.01)
+                        for i in range(3):
+                            sound = pygame.mixer.Sound(REQUIEM_SOUNDS[1])
+                            sound.play()
+                            while pygame.mixer.get_busy():
+                                time.sleep(1)
+                        sound = pygame.mixer.Sound(LIST_OF_SOUNDS_ERLKING[2])
+                        sound.play()
+                        damage = random.randint(100, 135)
+                        print(f"You have dealt: {damage} amount of damage.")
+                        temp_list.append(damage)
+                        slash = 0
+                        sound = pygame.mixer.Sound(REQUIEM_SOUNDS[2])
+                        sound.play()
+                        while pygame.mixer.get_busy():
+                            time.sleep(1)
+                    for i in range(len(temp_list)):
+                        temp_sum += temp_list[i]
+                    print(f"You have dealt a total of: {temp_sum} while doing 2 blunt attacks.")
+                    continue
+                elif temp_input == 4:
+                    sound = pygame.mixer.Sound(LEAVE_SOUND)
+                    sound.play()
+                    text1 = "What a sorry mess this is..."
+                    text2 = " no matter."
+                    text3 = " I will return."
+                    text4 = " I will return again and again until the day I crush Wuthering Heights between my teeth."
+                    for letter in text1:
+                        sys.stdout.write(letter)
+                        sys.stdout.flush()
+                        time.sleep(0.05)
+                    time.sleep(0.9)
+                    for letter in text2:
+                        sys.stdout.write(letter)
+                        sys.stdout.flush()
+                        time.sleep(0.05)
+                    time.sleep(0.9)
+                    for letter in text3:
+                        sys.stdout.write(letter)
+                        sys.stdout.flush()
+                        time.sleep(0.05)
+                    time.sleep(1.3)
+                    for letter in text4:
+                        sys.stdout.write(letter)
+                        sys.stdout.flush()
+                        time.sleep(0.05)
+                    time.sleep(0.9)
+                    while pygame.mixer.get_busy():
+                        time.sleep(0.01)
+                    break      
         if self._material == "Iron":
             slash = random.randint(1,8)
             temp_slash = slash
@@ -247,12 +456,12 @@ class RocketLauncher(Weapon):
         return total_damage
 
 def random_weapon():
-    x = random.randint(1,3)
+    x = random.randint(1, 3)
     print(f"You have rolled {x}.")
 
     if x == 1:
         print("You have been given a Sword!")
-        option = ["NONE", "Iron", "Wood", "Copper", "Silver"]
+        option = ["NONE", "Iron", "Wood", "Copper", "Silver", "Erlking's Greatsword"]
         temp1 = str(input("Choose a name for the sword: "))
         if temp1 == "":
             print("Enter a valid name.")
@@ -260,7 +469,7 @@ def random_weapon():
         print(f"You have a total of {len(option) - 1} of choices. Choose one:")
         for i in range(1, len(option)):
             print(f"{i} for {option[i]}")
-        temp2 = int(input("Choose between 1-4: "))
+        temp2 = int(input("Choose between 1-5: "))
         sword_temp = Sword(temp1, option[temp2])
         return sword_temp
     
