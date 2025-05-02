@@ -120,11 +120,58 @@ class Bow(Weapon):
         return damage1
 
 class RocketLauncher(Weapon):
-    def __init__(self, name_weapon):
+    def __init__(self, name_weapon, rocket_type):
         super().__init__(name_weapon)
+        self._rocket_type = rocket_type
+        self._rockets = 3
+
+    def damage(self):
+        total_damage = 0
+
+        if self._rockets <= 0:
+            print("No more rockets")
+            return 0
+
+        print(f"Firing 3 {self._rocket_type} rockets...")
+
+        for _ in range(3):
+            if self._rockets <= 0:
+                print("Out of rockets!")
+                break
+
+            self._rockets -= 1
+            print(f"Firing {self._rocket_type} rocket...")
+
+            time.sleep(1.5)
+
+            if self._rocket_type == "Explosive":
+                damage_value = random.randint(400, 700)
+                print(f"BOOOOOM!!! You dealt {damage_value} explosive damage!!")
+                total_damage += damage_value
+
+            elif self._rocket_type == "Nuclear":
+                chance = 0.3
+                crit_chance = round(random.random(), 2)
+                if crit_chance < chance:
+                    damage_value = random.randint(1000, 3000)
+                    print(f"CRITICAL HIT!! You dealt {damage_value} nuclear damage!!")
+                    total_damage += damage_value
+                else:
+                    damage_value = random.randint(500, 700)
+                    print(f"BOOOOOOOM!!! You dealt {damage_value} nuclear damage!!!")
+                    total_damage += damage_value
+
+            else:
+                print("Unknown rocket type.")
+                return 0
+
+            time.sleep(3)
+
+        print(f"You have inflicted a total of: {total_damage} point of damage")
+        return total_damage
 
 def random_weapon():
-    x = 2
+    x = 3
     print(f"You have rolled {x}")
 
     if x == 1:
@@ -152,9 +199,18 @@ def random_weapon():
         temp2 = int(input("Choose between 1-4: "))
         gun_temp = Gun(temp1, option[temp2])
         return gun_temp
+    elif x == 3:
+        option = ["NONE", "Explosive", "Nuclear"]
+        temp1 = str(input("Choose a name for the rocket launcher: "))
+        if temp1 == "":
+            print("Enter a valid name.")
+            return
+        print("Choose a rocket type:")
+        for i in range(1, len(option)):
+            print(f"{i} for {option[i]}")
+        temp2 = int(input("Choose 1 or 2: "))
+        rocket_temp = RocketLauncher(temp1, option[temp2])
+        return rocket_temp
     
-
-
-
 a = random_weapon()
 a.damage()
