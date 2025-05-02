@@ -199,6 +199,7 @@ def random_weapon():
         temp2 = int(input("Choose between 1-4: "))
         gun_temp = Gun(temp1, option[temp2])
         return gun_temp
+        
     elif x == 3:
         option = ["NONE", "Explosive", "Nuclear"]
         temp1 = str(input("Choose a name for the rocket launcher: "))
