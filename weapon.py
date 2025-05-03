@@ -410,8 +410,78 @@ class Bow(Weapon):
         self._range = range
     
     def damage(self):
-        damage1 = random.randint(70, 120)
-        return damage1
+        if self._range == "Low":
+            arrows = 12
+            temp_list = []
+            temp_total_damage = 0
+            chance = 0.2
+            while arrows > 0:
+                arrows -=1
+                chance_number = round(random.random(), 2)
+                damage1 = random.randint(20, 60)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have missed.")
+                print("putting another arrow...")
+                time.sleep(1)
+                print("Aiming...")
+                time.sleep(1)
+            else:
+                print("No more arrows")
+            for i in range(len(temp_list)): 
+                temp_total_damage += temp_list[i]
+            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+        elif self._range == "Medium":
+            arrows = 12
+            temp_list = []
+            temp_total_damage = 0
+            chance = 0.2
+            while arrows > 0:
+                arrows -=1
+                chance_number = round(random.random(), 2)
+                damage1 = random.randint(60, 80)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have missed.")
+                print("putting another arrow...")
+                time.sleep(1)
+                print("Aiming...")
+                time.sleep(1)
+            else:
+                print("No more arrows")
+            for i in range(len(temp_list)): 
+                temp_total_damage += temp_list[i]
+            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+        elif self._range == "High":
+            arrows = 12
+            temp_list = []
+            temp_total_damage = 0
+            chance = 0.2
+            while arrows > 0:
+                arrows -=1
+                chance_number = round(random.random(), 2)
+                damage1 = random.randint(80, 100)
+                if chance_number > chance:
+                    print(f"You have inflicted: {damage1} points of damage.")
+                    temp_list.append(damage1)
+                else:
+                    print(f"You have missed.")
+                print("putting another arrow...")
+                time.sleep(1)
+                print("Aiming...")
+                time.sleep(1)
+            else:
+                print("No more arrows")
+            for i in range(len(temp_list)): 
+                temp_total_damage += temp_list[i]
+            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+        else:
+            print("Invalid range. Please choose between Low, Medium, or High.")
+            return 0
 
 class RocketLauncher(Weapon):
     def __init__(self, name_weapon, rocket_type):
@@ -509,6 +579,18 @@ def random_weapon():
         temp2 = int(input("Choose 1 or 2: "))
         rocket_temp = RocketLauncher(temp1, option[temp2])
         return rocket_temp
+    elif x == 4:
+         option = ["NONE", "Low", "Medium", "High"]
+         temp1 = str(input("Choose a name for the bow and arrow: "))
+         if temp1 == "":
+            print("Enter a valid name.")
+            return
+         print("Choose a bow's range:")
+         for i in range(1, len(option)):
+            print(f"{i} for {option[i]}")
+         temp2 = int(input("Choose 1 to 3: "))
+         bow_temp = Bow(temp1, option[temp2])
+         return bow_temp
     
 
 a = random_weapon()
