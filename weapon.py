@@ -535,7 +535,7 @@ class RocketLauncher(Weapon):
         return total_damage
 
 def random_weapon():
-    x = random.randint(1, 3)
+    x = random.randint(1, 4)
     print(f"You have rolled {x}.")
 
     if x == 1:
