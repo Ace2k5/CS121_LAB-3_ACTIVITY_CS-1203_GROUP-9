@@ -582,7 +582,7 @@ class RocketLauncher(Weapon):
         return total_damage
 
 def random_weapon():
-    x = 4
+    x = 1
     print(f"You have rolled {x}.")
 
     if x == 1:
@@ -628,6 +628,7 @@ def random_weapon():
         return rocket_temp
     
     elif x == 4:
+         print("You have been given a Bow and Arrows!")
          option = ["NONE", "Low", "Medium", "High"]
          temp_range = ["Low", "Medium", "High"]
          temp1 = str(input("Choose a name for the bow and arrow: "))
