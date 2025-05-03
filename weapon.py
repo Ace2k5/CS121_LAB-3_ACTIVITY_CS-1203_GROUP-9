@@ -186,8 +186,9 @@ class Sword(Weapon):
                         for i in range(3):
                             sound = pygame.mixer.Sound(REQUIEM_SOUNDS[1])
                             sound.play()
-                            while pygame.mixer.get_busy():
-                                time.sleep(1)
+                            time.sleep(0.5)
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.01)
                         sound = pygame.mixer.Sound(LIST_OF_SOUNDS_ERLKING[2])
                         sound.play()
                         damage = random.randint(100, 135)
