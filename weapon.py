@@ -186,9 +186,8 @@ class Sword(Weapon):
                         for i in range(3):
                             sound = pygame.mixer.Sound(REQUIEM_SOUNDS[1])
                             sound.play()
-                            time.sleep(0.5)
-                        while pygame.mixer.get_busy():
-                            time.sleep(0.01)
+                            while pygame.mixer.get_busy():
+                                time.sleep(1)
                         sound = pygame.mixer.Sound(LIST_OF_SOUNDS_ERLKING[2])
                         sound.play()
                         damage = random.randint(100, 135)
@@ -252,7 +251,11 @@ class Sword(Weapon):
                 time.sleep(1)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
         
         elif self._material == "Wood":
             slash = random.randint(1,4)
@@ -272,7 +275,11 @@ class Sword(Weapon):
                 time.sleep(1)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
         
         elif self._material == "Copper":
             slash = random.randint(1,6)
@@ -292,7 +299,11 @@ class Sword(Weapon):
                 time.sleep(1)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
         
         elif self._material == "Silver":
             slash = random.randint(1,7)
@@ -312,7 +323,11 @@ class Sword(Weapon):
                 time.sleep(1)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
         
 class Gun(Weapon):
     def __init__(self, name_weapon, type_gun):
@@ -327,7 +342,6 @@ class Gun(Weapon):
                 ammo -=1
                 chance = 0.1
                 chance_number = round(random.random(), 2)
-                
                 damage1 = random.randint(50, 100)
                 if chance_number > chance:
                     print(f"You have inflicted: {damage1} points of damage.")
@@ -337,8 +351,11 @@ class Gun(Weapon):
                 time.sleep(1)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
-        
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
 
         elif self._type_gun == "Rifle":
             ammo = 30
@@ -358,7 +375,11 @@ class Gun(Weapon):
                 time.sleep(0.2)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
         
 
         elif self._type_gun == "Sniper":
@@ -379,7 +400,11 @@ class Gun(Weapon):
                 time.sleep(2)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
         
 
         elif self._type_gun == "Shotgun":
@@ -402,7 +427,11 @@ class Gun(Weapon):
                 time.sleep(1)
             for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
     
 class Bow(Weapon):
     def __init__(self, name_weapon, range):
@@ -411,6 +440,8 @@ class Bow(Weapon):
     
     def damage(self):
         if self._range == "Low":
+            print("The enemy is in close range.")
+            time.sleep(1.5)
             arrows = 12
             temp_list = []
             temp_total_damage = 0
@@ -430,10 +461,17 @@ class Bow(Weapon):
                 time.sleep(1)
             else:
                 print("No more arrows")
-            for i in range(len(temp_list)): 
+            for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
+        
         elif self._range == "Medium":
+            print("The enemy holds steady at mid range. Keep Alert!")
+            time.sleep(1.5)
             arrows = 12
             temp_list = []
             temp_total_damage = 0
@@ -453,10 +491,17 @@ class Bow(Weapon):
                 time.sleep(1)
             else:
                 print("No more arrows")
-            for i in range(len(temp_list)): 
+            for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
+
         elif self._range == "High":
+            print("The enemy is keeping their distance afar.")
+            time.sleep(1.5)
             arrows = 12
             temp_list = []
             temp_total_damage = 0
@@ -476,12 +521,14 @@ class Bow(Weapon):
                 time.sleep(1)
             else:
                 print("No more arrows")
-            for i in range(len(temp_list)): 
+            for i in range(len(temp_list)):
                 temp_total_damage += temp_list[i]
-            return print(f"You have inflicted a total of: {temp_total_damage} point of damage.")
-        else:
-            print("Invalid range. Please choose between Low, Medium, or High.")
-            return 0
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+            for letter in end_text:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(0.05)
+
 
 class RocketLauncher(Weapon):
     def __init__(self, name_weapon, rocket_type):
@@ -535,7 +582,7 @@ class RocketLauncher(Weapon):
         return total_damage
 
 def random_weapon():
-    x = random.randint(1, 4)
+    x = 4
     print(f"You have rolled {x}.")
 
     if x == 1:
@@ -579,21 +626,18 @@ def random_weapon():
         temp2 = int(input("Choose 1 or 2: "))
         rocket_temp = RocketLauncher(temp1, option[temp2])
         return rocket_temp
+    
     elif x == 4:
          option = ["NONE", "Low", "Medium", "High"]
+         temp_range = ["Low", "Medium", "High"]
          temp1 = str(input("Choose a name for the bow and arrow: "))
          if temp1 == "":
             print("Enter a valid name.")
             return
-         print("Choose a bow's range:")
-         for i in range(1, len(option)):
-            print(f"{i} for {option[i]}")
-         temp2 = int(input("Choose 1 to 3: "))
-         bow_temp = Bow(temp1, option[temp2])
+         temp2 = random.choice(temp_range)
+         bow_temp = Bow(temp1, temp2)
          return bow_temp
     
 
 a = random_weapon()
 a.damage()
-
-#Changes ko (Basty) dito ay tinanggal ko muna ung mga miss chances na print, nilagyan ko na don sa sword class, naglagay den ako ng print("You have been given a Sword!") kada weapon. yon lungs
