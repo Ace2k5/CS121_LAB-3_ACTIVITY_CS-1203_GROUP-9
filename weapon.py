@@ -445,6 +445,8 @@ class Gun(Weapon):
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(2)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
