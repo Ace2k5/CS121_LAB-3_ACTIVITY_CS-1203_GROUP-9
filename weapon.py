@@ -409,6 +409,8 @@ class Gun(Weapon):
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(3)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -446,6 +448,8 @@ class Gun(Weapon):
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
+                        print("Reloading...")
+                        time.sleep(3)
                         return 0
                     else:
                         print("Invalid option.")
@@ -478,6 +482,8 @@ class Gun(Weapon):
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(3)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -515,6 +521,8 @@ class Gun(Weapon):
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(3)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -563,6 +571,8 @@ class Bow(Weapon):
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
+                        print("Getting more arrows...")
+                        time.sleep(1)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -603,6 +613,8 @@ class Bow(Weapon):
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
+                        print("Getting more arrows...")
+                        time.sleep(1)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -643,6 +655,8 @@ class Bow(Weapon):
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
+                        print("Getting more arrows...")
+                        time.sleep(1)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
