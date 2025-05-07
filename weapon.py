@@ -534,52 +534,71 @@ class RocketLauncher(Weapon):
     def __init__(self, name_weapon, rocket_type):
         super().__init__(name_weapon)
         self._rocket_type = rocket_type
-        self._rockets = 3
+        self.max_ammo = self.ammo_max()
+        self.ammo = self.max_ammo
 
-    def damage(self):
-        total_damage = 0
+    def ammo_max(self):
+        return 3
 
-        if self._rockets <= 0:
-            print("No more rockets")
+    def reload(self):
+        print("Reloading rockets...")
+        time.sleep(2)
+        self.ammo = self.max_ammo
+        print(f"Reloaded. {self.ammo} rockets ready.")
+
+    def get_rocket_damage(self):
+        if self._rocket_type == "Explosive":
+            damage_value = random.randint(400, 700)
+            print(f"BOOOOOM!!! You dealt {damage_value} explosive damage!!")
+            return damage_value
+
+        elif self._rocket_type == "Nuclear":
+            crit_chance = round(random.random(), 2)
+            if crit_chance < 0.3:
+                damage_value = random.randint(1000, 3000)
+                print(f"CRITICAL HIT!! You dealt {damage_value} nuclear damage!!")
+            else:
+                damage_value = random.randint(500, 700)
+                print(f"BOOOOOOOM!!! You dealt {damage_value} nuclear damage!!!")
+            return damage_value
+
+        else:
+            print("Unknown rocket type.")
             return 0
 
-        print(f"Firing 3 {self._rocket_type} rockets...")
+    def rocket_launcher_logic(self):
+        total_damage = 0
+        rockets_to_fire = min(3, self.ammo)
 
-        for _ in range(3):
-            if self._rockets <= 0:
-                print("Out of rockets!")
-                break
+        if rockets_to_fire == 0:
+            print("No more rockets!")
+            return 0
 
-            self._rockets -= 1
+        print(f"Firing {rockets_to_fire} {self._rocket_type} rocket(s)...")
+
+        for _ in range(rockets_to_fire):
             print(f"Firing {self._rocket_type} rocket...")
-
+            self.ammo -= 1
             time.sleep(1.5)
 
-            if self._rocket_type == "Explosive":
-                damage_value = random.randint(400, 700)
-                print(f"BOOOOOM!!! You dealt {damage_value} explosive damage!!")
-                total_damage += damage_value
-
-            elif self._rocket_type == "Nuclear":
-                chance = 0.3
-                crit_chance = round(random.random(), 2)
-                if crit_chance < chance:
-                    damage_value = random.randint(1000, 3000)
-                    print(f"CRITICAL HIT!! You dealt {damage_value} nuclear damage!!")
-                    total_damage += damage_value
-                else:
-                    damage_value = random.randint(500, 700)
-                    print(f"BOOOOOOOM!!! You dealt {damage_value} nuclear damage!!!")
-                    total_damage += damage_value
-
-            else:
-                print("Unknown rocket type.")
-                return 0
+            damage = self.get_rocket_damage()
+            total_damage += damage
 
             time.sleep(3)
 
-        print(f"You have inflicted a total of: {total_damage} point of damage")
+        print(f"You have inflicted a total of: {total_damage} point{'s' if total_damage != 1 else ''} of damage")
+
+        if self.ammo == 0:
+            choice = input("You're out of rockets! Would you like to reload? (yes/no): ").strip().lower()
+            if choice == "yes":
+                self.reload()
+            else:
+                print("You chose not to reload.")
+
         return total_damage
+
+    def damage(self):
+        return self.rocket_launcher_logic()
 
 def random_weapon():
     x = 1
