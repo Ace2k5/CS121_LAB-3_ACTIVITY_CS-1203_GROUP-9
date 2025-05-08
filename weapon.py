@@ -36,9 +36,10 @@ SNIPER_RELOAD = sound_folder / "sniper_reload.mp3"
 
 SHOTGUN_FIRE = sound_folder / "shotgunfire.mp3"
 SHOTGUN_RELOAD = sound_folder / "shotgun_reload.mp3"
+SHOTGUN_COCKING = sound_folder / "shotguncocking.mp3"
 
-UNIVERSAL_MISS = sound_folder / "miss.mp3"
 
+COUNTDOWN_ROCKETLAUNCHER = sound_folder / "siren_rocketlauncher.mp3"
 EXPLOSION_ROCKET1 = sound_folder / "explosionrocket1.mp3"
 EXPLOSION_ROCKET2 = sound_folder / "explosionrocket2.mp3"
 NUCL_LAUNCH = sound_folder / "nuclrocketlauncher.mp3"
@@ -49,6 +50,7 @@ BOW_AIMING = sound_folder / "bow_aiming.mp3"
 BOW_HIT = sound_folder / "bow_hit.mp3"
 BOW_MISS = sound_folder / "bow_miss.mp3"
 
+UNIVERSAL_MISS = sound_folder / "miss.mp3"
 pygame.mixer.init()
 pygame.mixer.set_num_channels(50)
 def play_music():
@@ -303,6 +305,7 @@ class Sword(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
         
         elif self._material == "Wood":
             while True:
@@ -342,6 +345,7 @@ class Sword(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
         
         elif self._material == "Copper":
             while True:
@@ -381,6 +385,7 @@ class Sword(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
         
         elif self._material == "Silver":
             while True:
@@ -420,6 +425,7 @@ class Sword(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
 
                 
     def run(self):
@@ -442,12 +448,14 @@ class Gun(Weapon):
                     damage1 = random.randint(50, 100)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(PISTOL_FIRE)
+                        s.play()                        
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
                         s = pygame.mixer.Sound(UNIVERSAL_MISS)
                         s.play()
-                    time.sleep(1)
+                    time.sleep(0.5)
                 for i in range(len(temp_list)):
                     temp_total_damage += temp_list[i]
                     end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
@@ -461,13 +469,14 @@ class Gun(Weapon):
                         print("Reloading...")
                         s = pygame.mixer.Sound(PISTOL_RELOAD)
                         s.play()
-                        time.sleep(3)
+                        time.sleep(2)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
 
         elif self._type_gun == "Rifle":
             while True:
@@ -487,7 +496,9 @@ class Gun(Weapon):
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
-                    time.sleep(0.2)
+                        s = pygame.mixer.Sound(UNIVERSAL_MISS)
+                        s.play()
+                    time.sleep(0.1)
                 for i in range(len(temp_list)):
                     temp_total_damage += temp_list[i]
                     end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
@@ -505,11 +516,11 @@ class Gun(Weapon):
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
-                        print("Reloading...")
                         time.sleep(3)
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
         
 
         elif self._type_gun == "Sniper":
@@ -551,37 +562,42 @@ class Gun(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
         
 
         elif self._type_gun == "Shotgun":
             while True:
-                ammo = 9
+                ammo = 8
                 temp_list = []
                 temp_total_damage = 0
                 chance = 0.45
                 while ammo > 0:
-                    ammo -=1
+                    ammo -= 1
                     s = pygame.mixer.Sound(SHOTGUN_FIRE)
                     s.play()
                     for i in range(9):
                         chance_number = round(random.random(), 2)
-                        
                         damage1 = random.randint(50, 100)
                         if chance_number > chance:
                             print(f"You have inflicted: {damage1} points of damage.")
                             temp_list.append(damage1)
                         else:
-                            print(f"You have missed.")
+                            print("You have missed.")
+                    time.sleep(0.2)
                     print("Stabilizing...")
+                    s = pygame.mixer.Sound(SHOTGUN_COCKING)
+                    s.play()
                     time.sleep(1)
+
                 for i in range(len(temp_list)):
                     temp_total_damage += temp_list[i]
-                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
                 for letter in end_text:
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+
+                temp_inp = str(input("Attack one more? (Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
                         print("Reloading...")
@@ -594,6 +610,7 @@ class Gun(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
     def run(self):
         self.gun_logic()
     
@@ -659,6 +676,7 @@ class Bow(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
         
         elif self._range == "Medium":
             print("The enemy holds steady at mid range. Keep Alert!")
@@ -715,6 +733,7 @@ class Bow(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
 
         elif self._range == "High":
             print("The enemy is keeping their distance afar.")
@@ -771,6 +790,7 @@ class Bow(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
+                        return 0
     def run(self):
         self.bow_logic()
 
@@ -779,88 +799,110 @@ class RocketLauncher(Weapon):
     def __init__(self, name_weapon, rocket_type):
         super().__init__(name_weapon)
         self._rocket_type = rocket_type
-        self.max_ammo = self.ammo_max()
-        self.ammo = self.max_ammo
-
-    def ammo_max(self):
-        return 3
-
-    def reload(self):
-        print("Reloading rockets...")
-        pygame.mixer.Sound(str(ROCKET_RELOAD)).play()
-        time.sleep(2)
-        self.ammo = self.max_ammo
-        print(f"Reloaded. {self.ammo} rockets ready.")
-
-    def get_rocket_damage(self):
-        if self._rocket_type == "Explosive":
-            pygame.mixer.Sound(str(EXPLOSION_ROCKET1)).play()
-            damage_value = random.randint(400, 700)
-            print(f"BOOOOOM!!! You dealt {damage_value} explosive damage!!")
-            return damage_value
-        elif self._rocket_type == "Nuclear":
-            pygame.mixer.Sound(str(EXPLOSION_ROCKET2)).play()
-            crit_chance = round(random.random(), 2)
-            if crit_chance < 0.3:
-                damage_value = random.randint(1000, 3000)
-                print(f"CRITICAL HIT!! You dealt {damage_value} nuclear damage!!")
-            else:
-                damage_value = random.randint(500, 700)
-                print(f"BOOOOOOOM!!! You dealt {damage_value} nuclear damage!!!")
-            return damage_value
-        else:
-            print("Unknown rocket type.")
-            return 0
 
     def rocket_launcher_logic(self):
-        total_damage = 0
-        rockets_to_fire = min(3, self.ammo)
+        if self._rocket_type == "Explosive":
+            while True:
+                ammo = 3
+                temp_list = []
+                temp_total_damage = 0
+                while ammo > 0:
+                    ammo -= 1
+                    chance = 0.1
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(400, 700)
+                    damage2 = random.randint(100, 200)
+                    if chance_number > chance:
+                        print("INCOMING!!!")
+                        s = pygame.mixer.Sound(EXPL_LAUNCH)
+                        s.play()
+                        time.sleep(1.5)
+                        print(f"BOOOOOM!!! You dealt {damage1} explosive damage!!")
+                        s = pygame.mixer.Sound(EXPLOSION_ROCKET1)
+                        s.play()
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You missed your target! But still dealt {damage2} explosive damage!!")
+                        temp_list.append(damage2)
+                    time.sleep(2)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Reloading...")
+                        s = pygame.mixer.Sound(ROCKET_RELOAD)
+                        s.play()
+                        time.sleep(6)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
+                        return 0
+                    
+        elif self._rocket_type == "Nuclear":
+            while True:
+                ammo = 3
+                temp_list = []
+                temp_total_damage = 0
 
-        if rockets_to_fire == 0:
-            print("No more rockets!")
-            return 0
+                print("⚠ WARNING ⚠ WARNING ⚠ WARNING ⚠")
+                s = pygame.mixer.Sound(COUNTDOWN_ROCKETLAUNCHER)
+                s.play()
+                print(f"Firing {ammo} rockets")
+                s = pygame.mixer.Sound(NUCL_LAUNCH)
+                s.play()
+                time.sleep(5.5)
 
-        print(f"Firing {rockets_to_fire} {self._rocket_type} rocket(s)...")
+                while ammo > 0:
+                    ammo -= 1
+                    crit_chance = round(random.random(), 2)
 
-        for _ in range(rockets_to_fire):
-            print(f"Firing {self._rocket_type} rocket...")
-            self.ammo -= 1
-
-            if self._rocket_type == "Explosive":
-                pygame.mixer.Sound(str(EXPL_LAUNCH)).play()
-            elif self._rocket_type == "Nuclear":
-                pygame.mixer.Sound(str(NUCL_LAUNCH)).play()
-
-            time.sleep(3)
-
-            damage = self.get_rocket_damage()
-            total_damage += damage
-
-            time.sleep(3)
-
-        end_text = f"You have inflicted a total of: {total_damage} point{'s' if total_damage != 1 else ''} of damage.\n"
-        for letter in end_text:
-            sys.stdout.write(letter)
-            sys.stdout.flush()
-            time.sleep(0.05)
-
-        if self.ammo == 0:
-            choice = input("You're out of rockets! Would you like to reload? (y/n): ").strip().lower()
-            if choice == "y":
-                self.reload()
-            else:
-                print("You chose not to reload.")
-
-        return total_damage
-
-    def damage(self):
-        return self.rocket_launcher_logic()
-
+                    if crit_chance < 0.3:
+                        damage1 = random.randint(1000, 3000)
+                        print(f"CRITICAL HIT!! You dealt {damage1} nuclear damage!!")
+                        s = pygame.mixer.Sound(EXPLOSION_ROCKET2)
+                        s.play()
+                        temp_list.append(damage1)
+                    else:
+                        damage1 = random.randint(500, 800)
+                        print(f"BOOOOOOOM!!! You dealt {damage1} nuclear damage!!!")
+                        s = pygame.mixer.Sound(EXPLOSION_ROCKET2)
+                        s.play()
+                    time.sleep(4)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                        sys.stdout.write(letter)
+                        sys.stdout.flush()
+                        time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Reloading...")
+                        s = pygame.mixer.Sound(ROCKET_RELOAD)
+                        s.play()
+                        time.sleep(6)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
+                        return 0
     def run(self):
         self.rocket_launcher_logic()
 
 def random_weapon():
-    x = random.randint(1, 4)
+    x = 3
     print(f"You have rolled {x}.")
 
     if x == 1:
