@@ -24,7 +24,7 @@ REQUIEM_SOUNDS = [
 LEAVE_SOUND = sound_folder / "leave.mp3"
 pygame.mixer.init()
 def play_music():
-    pygame.mixer.music.load(f"{sound_folder}/erlking_theme.mp3")
+    pygame.mixer.music.load(f"{sound_folder}\erlking_theme.mp3")
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(-1)
 def stop_music():
@@ -33,9 +33,13 @@ def stop_music():
 class Weapon(ABC):
     def __init__(self, name_weapon):
         self._name_weapon = name_weapon
-    def damage(self):
+    def sword_logic(self):
         pass
-    def reload(self):
+    def gun_logic(self):
+        pass
+    def bow_logic(self):
+        pass
+    def rocket_launcher_logic(self):
         pass
 
 class Sword(Weapon):
@@ -43,7 +47,7 @@ class Sword(Weapon):
         super().__init__(name_weapon)
         self._material = material
 
-    def damage(self):
+    def sword_logic(self):
         if self._material == "Erlking's Greatsword":
             play_music()
             entry = pygame.mixer.Sound(str(AWAKENING))
@@ -234,187 +238,194 @@ class Sword(Weapon):
                         time.sleep(0.01)
                     break      
         if self._material == "Iron":
-            slash = random.randint(1,8)
-            temp_slash = slash
-            temp_list = []
-            temp_total_damage = 0
-            while slash > 0:
-                slash -=1
-                chance = 0.1
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(50, 100)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
-                else:
-                    print(f"You have been parried.")
-                time.sleep(1)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+            while True:
+                slash = random.randint(1,8)
+                temp_slash = slash
+                temp_list = []
+                temp_total_damage = 0
+                while slash > 0:
+                    slash -=1
+                    chance = 0.1
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(50, 100)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have been parried.")
+                    time.sleep(1)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
         
         elif self._material == "Wood":
-            slash = random.randint(1,4)
-            temp_slash = slash
-            temp_list = []
-            temp_total_damage = 0
-            while slash > 0:
-                slash -=1
-                chance = 0.3
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(10, 30)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
-                else:
-                    print(f"You have been parried.")
-                time.sleep(1)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+            while True:
+                slash = random.randint(1,4)
+                temp_slash = slash
+                temp_list = []
+                temp_total_damage = 0
+                while slash > 0:
+                    slash -=1
+                    chance = 0.3
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(10, 30)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have been parried.")
+                    time.sleep(1)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
         
         elif self._material == "Copper":
-            slash = random.randint(1,6)
-            temp_slash = slash
-            temp_list = []
-            temp_total_damage = 0
-            while slash > 0:
-                slash -=1
-                chance = 0.2
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(20, 50)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
-                else:
-                    print(f"You have been parried.")
-                time.sleep(1)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+            while True:
+                slash = random.randint(1,6)
+                temp_slash = slash
+                temp_list = []
+                temp_total_damage = 0
+                while slash > 0:
+                    slash -=1
+                    chance = 0.2
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(20, 50)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have been parried.")
+                    time.sleep(1)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
         
         elif self._material == "Silver":
-            slash = random.randint(1,7)
-            temp_slash = slash
-            temp_list = []
-            temp_total_damage = 0
-            while slash > 0:
-                slash -=1
-                chance = 0.15
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(40, 80)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
-                else:
-                    print(f"You have been parried.")
-                time.sleep(1)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+            while True:
+                slash = random.randint(1,7)
+                temp_slash = slash
+                temp_list = []
+                temp_total_damage = 0
+                while slash > 0:
+                    slash -=1
+                    chance = 0.15
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(40, 80)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have been parried.")
+                    time.sleep(1)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have swung a total of {temp_slash} time(s). \nYou have inflicted a total of: {temp_total_damage} point of damage."
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                print()
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
+
+                
+    def run(self):
+        self.sword_logic()
         
 class Gun(Weapon):
     def __init__(self, name_weapon, type_gun):
         super().__init__(name_weapon)
         self._type_gun = type_gun
-    def damage(self):
+    def gun_logic(self):
         if self._type_gun == "Pistol":
-            ammo = 12
-            temp_list = []
-            temp_total_damage = 0
-            while ammo > 0:
-                ammo -=1
-                chance = 0.1
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(50, 100)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
-                else:
-                    print(f"You have missed.")
-                time.sleep(1)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+            while True:
+                ammo = 12
+                temp_list = []
+                temp_total_damage = 0
+                while ammo > 0:
+                    ammo -=1
+                    chance = 0.1
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(50, 100)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have missed.")
+                    time.sleep(1)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(3)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
 
         elif self._type_gun == "Rifle":
-            ammo = 30
-            temp_list = []
-            temp_total_damage = 0
-            while ammo > 0:
-                ammo -=1
-                chance = 0.2
-                chance_number = round(random.random(), 2)
-                
-                damage1 = random.randint(50, 100)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
-                else:
-                    print(f"You have missed.")
-                time.sleep(0.2)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
-        
-
-        elif self._type_gun == "Sniper":
-            ammo = 5
-            temp_list = []
-            temp_total_damage = 0
-            while ammo > 0:
-                ammo -=1
-                chance = 0.01
-                chance_number = round(random.random(), 2)
-                
-                damage1 = random.randint(100, 5000)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
-                else:
-                    print(f"You have missed.")
-                time.sleep(2)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
-        
-
-        elif self._type_gun == "Shotgun":
-            ammo = 9
-            temp_list = []
-            temp_total_damage = 0
-            chance = 0.45
-            while ammo > 0:
-                ammo -=1
-                for i in range(9):
+            while True:
+                ammo = 30
+                temp_list = []
+                temp_total_damage = 0
+                while ammo > 0:
+                    ammo -=1
+                    chance = 0.2
                     chance_number = round(random.random(), 2)
                     
                     damage1 = random.randint(50, 100)
@@ -423,166 +434,313 @@ class Gun(Weapon):
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
-                print("Stabilizing...")
-                time.sleep(1)
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+                    time.sleep(0.2)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(2)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        print("Reloading...")
+                        time.sleep(3)
+                        return 0
+                    else:
+                        print("Invalid option.")
+        
+
+        elif self._type_gun == "Sniper":
+            while True:
+                ammo = 5
+                temp_list = []
+                temp_total_damage = 0
+                while ammo > 0:
+                    ammo -=1
+                    chance = 0.01
+                    chance_number = round(random.random(), 2)
+                    
+                    damage1 = random.randint(100, 5000)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have missed.")
+                    time.sleep(2)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(3)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
+        
+
+        elif self._type_gun == "Shotgun":
+            while True:
+                ammo = 9
+                temp_list = []
+                temp_total_damage = 0
+                chance = 0.45
+                while ammo > 0:
+                    ammo -=1
+                    for i in range(9):
+                        chance_number = round(random.random(), 2)
+                        
+                        damage1 = random.randint(50, 100)
+                        if chance_number > chance:
+                            print(f"You have inflicted: {damage1} points of damage.")
+                            temp_list.append(damage1)
+                        else:
+                            print(f"You have missed.")
+                    print("Stabilizing...")
+                    time.sleep(1)
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Reloading...")
+                        time.sleep(3)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
+    def run(self):
+        self.gun_logic()
     
 class Bow(Weapon):
     def __init__(self, name_weapon, range):
         super().__init__(name_weapon)
         self._range = range
     
-    def damage(self):
+    def bow_logic(self):
         if self._range == "Low":
             print("The enemy is in close range.")
             time.sleep(1.5)
-            arrows = 12
-            temp_list = []
-            temp_total_damage = 0
-            chance = 0.2
-            while arrows > 0:
-                arrows -=1
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(20, 60)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
+            while True:
+                arrows = 12
+                temp_list = []
+                temp_total_damage = 0
+                chance = 0.2
+                while arrows > 0:
+                    arrows -=1
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(20, 60)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have missed.")
+                    print("putting another arrow...")
+                    time.sleep(1)
+                    print("Aiming...")
+                    time.sleep(1)
                 else:
-                    print(f"You have missed.")
-                print("putting another arrow...")
-                time.sleep(1)
-                print("Aiming...")
-                time.sleep(1)
-            else:
-                print("No more arrows")
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+                    print("No more arrows")
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Getting more arrows...")
+                        time.sleep(1)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
         
         elif self._range == "Medium":
             print("The enemy holds steady at mid range. Keep Alert!")
             time.sleep(1.5)
-            arrows = 12
-            temp_list = []
-            temp_total_damage = 0
-            chance = 0.2
-            while arrows > 0:
-                arrows -=1
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(60, 80)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
+            while True:
+                arrows = 12
+                temp_list = []
+                temp_total_damage = 0
+                chance = 0.2
+                while arrows > 0:
+                    arrows -=1
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(60, 80)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have missed.")
+                    print("putting another arrow...")
+                    time.sleep(1)
+                    print("Aiming...")
+                    time.sleep(1)
                 else:
-                    print(f"You have missed.")
-                print("putting another arrow...")
-                time.sleep(1)
-                print("Aiming...")
-                time.sleep(1)
-            else:
-                print("No more arrows")
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+                    print("No more arrows")
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Getting more arrows...")
+                        time.sleep(1)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
 
         elif self._range == "High":
             print("The enemy is keeping their distance afar.")
             time.sleep(1.5)
-            arrows = 12
-            temp_list = []
-            temp_total_damage = 0
-            chance = 0.2
-            while arrows > 0:
-                arrows -=1
-                chance_number = round(random.random(), 2)
-                damage1 = random.randint(80, 100)
-                if chance_number > chance:
-                    print(f"You have inflicted: {damage1} points of damage.")
-                    temp_list.append(damage1)
+            while True:
+                arrows = 12
+                temp_list = []
+                temp_total_damage = 0
+                chance = 0.2
+                while arrows > 0:
+                    arrows -=1
+                    chance_number = round(random.random(), 2)
+                    damage1 = random.randint(80, 100)
+                    if chance_number > chance:
+                        print(f"You have inflicted: {damage1} points of damage.")
+                        temp_list.append(damage1)
+                    else:
+                        print(f"You have missed.")
+                    print("putting another arrow...")
+                    time.sleep(1)
+                    print("Aiming...")
+                    time.sleep(1)
                 else:
-                    print(f"You have missed.")
-                print("putting another arrow...")
-                time.sleep(1)
-                print("Aiming...")
-                time.sleep(1)
-            else:
-                print("No more arrows")
-            for i in range(len(temp_list)):
-                temp_total_damage += temp_list[i]
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
-            for letter in end_text:
-                sys.stdout.write(letter)
-                sys.stdout.flush()
-                time.sleep(0.05)
+                    print("No more arrows")
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for letter in end_text:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                while True:
+                    if temp_inp == "Y":
+                        print("Getting more arrows...")
+                        time.sleep(1)
+                        break
+                    elif temp_inp == "N":
+                        print("Exiting...")
+                        return 0
+                    else:
+                        print("Invalid option.")
+    def run(self):
+        self.bow_logic()
 
 
 class RocketLauncher(Weapon):
     def __init__(self, name_weapon, rocket_type):
         super().__init__(name_weapon)
         self._rocket_type = rocket_type
-        self._rockets = 3
+        self.max_ammo = self.ammo_max()
+        self.ammo = self.max_ammo
 
-    def damage(self):
-        total_damage = 0
+    def ammo_max(self):
+        return 3
 
-        if self._rockets <= 0:
-            print("No more rockets")
+    def reload(self):
+        print("Reloading rockets...")
+        time.sleep(2)
+        self.ammo = self.max_ammo
+        print(f"Reloaded. {self.ammo} rockets ready.")
+
+    def get_rocket_damage(self):
+        if self._rocket_type == "Explosive":
+            damage_value = random.randint(400, 700)
+            print(f"BOOOOOM!!! You dealt {damage_value} explosive damage!!")
+            return damage_value
+
+        elif self._rocket_type == "Nuclear":
+            crit_chance = round(random.random(), 2)
+            if crit_chance < 0.3:
+                damage_value = random.randint(1000, 3000)
+                print(f"CRITICAL HIT!! You dealt {damage_value} nuclear damage!!")
+            else:
+                damage_value = random.randint(500, 700)
+                print(f"BOOOOOOOM!!! You dealt {damage_value} nuclear damage!!!")
+            return damage_value
+
+        else:
+            print("Unknown rocket type.")
             return 0
 
-        print(f"Firing 3 {self._rocket_type} rockets...")
+    def rocket_launcher_logic(self):
+        total_damage = 0
+        rockets_to_fire = min(3, self.ammo)
 
-        for _ in range(3):
-            if self._rockets <= 0:
-                print("Out of rockets!")
-                break
+        if rockets_to_fire == 0:
+            print("No more rockets!")
+            return 0
 
-            self._rockets -= 1
+        print(f"Firing {rockets_to_fire} {self._rocket_type} rocket(s)...")
+
+        for _ in range(rockets_to_fire):
             print(f"Firing {self._rocket_type} rocket...")
-
+            self.ammo -= 1
             time.sleep(1.5)
 
-            if self._rocket_type == "Explosive":
-                damage_value = random.randint(400, 700)
-                print(f"BOOOOOM!!! You dealt {damage_value} explosive damage!!")
-                total_damage += damage_value
-
-            elif self._rocket_type == "Nuclear":
-                chance = 0.3
-                crit_chance = round(random.random(), 2)
-                if crit_chance < chance:
-                    damage_value = random.randint(1000, 3000)
-                    print(f"CRITICAL HIT!! You dealt {damage_value} nuclear damage!!")
-                    total_damage += damage_value
-                else:
-                    damage_value = random.randint(500, 700)
-                    print(f"BOOOOOOOM!!! You dealt {damage_value} nuclear damage!!!")
-                    total_damage += damage_value
-
-            else:
-                print("Unknown rocket type.")
-                return 0
+            damage = self.get_rocket_damage()
+            total_damage += damage
 
             time.sleep(3)
 
-        print(f"You have inflicted a total of: {total_damage} point of damage")
+        print(f"You have inflicted a total of: {total_damage} point{'s' if total_damage != 1 else ''} of damage")
+
+        if self.ammo == 0:
+            choice = input("You're out of rockets! Would you like to reload? (yes/no): ").strip().lower()
+            if choice == "yes":
+                self.reload()
+            else:
+                print("You chose not to reload.")
+
         return total_damage
 
+    def damage(self):
+        return self.rocket_launcher_logic()
+
 def random_weapon():
-    x = 1
+    x = 2
     print(f"You have rolled {x}.")
 
     if x == 1:
@@ -641,4 +799,4 @@ def random_weapon():
     
 
 a = random_weapon()
-a.damage()
+a.run()
