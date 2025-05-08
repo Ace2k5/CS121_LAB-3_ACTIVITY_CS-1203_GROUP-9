@@ -4,7 +4,7 @@ import time, sys
 from pathlib import Path
 import pygame
 ### ----------IMPORTANT FOR ERLKING GREATSWORD-------- ###
-sound_folder = Path("CS121_LAB-3_ACTIVITY_CS-1203_GROUP-9/sounds")
+sound_folder = Path("D:/CS121_LAB-3_ACTIVITY_CS-1203_GROUP-9/sounds")
 AWAKENING = sound_folder / "Erlking's_AWAKENING.mp3"
 LIST_OF_SOUNDS_ERLKING = [
     sound_folder / "battle1.mp3",
@@ -39,6 +39,7 @@ SHOTGUN_RELOAD = sound_folder / "shotgun_reload.mp3"
 
 UNIVERSAL_MISS = sound_folder / "miss.mp3"
 pygame.mixer.init()
+pygame.mixer.set_num_channels(50)
 def play_music():
     pygame.mixer.music.load(f"{sound_folder}\erlking_theme.mp3")
     pygame.mixer.music.set_volume(0.5)
