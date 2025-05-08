@@ -751,7 +751,6 @@ class RocketLauncher(Weapon):
             damage_value = random.randint(400, 700)
             print(f"BOOOOOM!!! You dealt {damage_value} explosive damage!!")
             return damage_value
-
         elif self._rocket_type == "Nuclear":
             pygame.mixer.Sound(str(EXPLOSION_ROCKET2)).play()
             crit_chance = round(random.random(), 2)
@@ -762,7 +761,6 @@ class RocketLauncher(Weapon):
                 damage_value = random.randint(500, 700)
                 print(f"BOOOOOOOM!!! You dealt {damage_value} nuclear damage!!!")
             return damage_value
-
         else:
             print("Unknown rocket type.")
             return 0
@@ -786,14 +784,18 @@ class RocketLauncher(Weapon):
             elif self._rocket_type == "Nuclear":
                 pygame.mixer.Sound(str(NUCL_LAUNCH)).play()
 
-            time.sleep(1.5)
+            time.sleep(3)
 
             damage = self.get_rocket_damage()
             total_damage += damage
 
             time.sleep(3)
 
-        print(f"You have inflicted a total of: {total_damage} point{'s' if total_damage != 1 else ''} of damage")
+        end_text = f"You have inflicted a total of: {total_damage} point{'s' if total_damage != 1 else ''} of damage.\n"
+        for letter in end_text:
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(0.05)
 
         if self.ammo == 0:
             choice = input("You're out of rockets! Would you like to reload? (y/n): ").strip().lower()
