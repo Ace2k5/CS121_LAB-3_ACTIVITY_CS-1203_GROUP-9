@@ -16,12 +16,28 @@ LIST_OF_SOUNDS_ERLKING = [
 LIST_OF_SWORDSOUNDS = [
     sound_folder / "sound2.mp3"
 ]
+SWORD_PARRIED = sound_folder / "parried.mp3"
 REQUIEM_SOUNDS = [
     sound_folder / "requiem1.mp3",
     sound_folder / "requiem2.mp3",
     sound_folder / "requiem3.mp3"
 ]
 LEAVE_SOUND = sound_folder / "leave.mp3"
+
+PISTOL_FIRE = sound_folder / "pistolfire.mp3"
+PISTOL_RELOAD = sound_folder / "pistol_reload.mp3"
+
+
+RIFLE_FIRE = sound_folder / "riflefire.mp3"
+RIFLE_RELOAD = sound_folder / "rifle_reload.mp3"
+
+SNIPER_FIRE = sound_folder / "sniperfire.mp3"
+SNIPER_RELOAD = sound_folder / "sniper_reload.mp3"
+
+SHOTGUN_FIRE = sound_folder / "shotgunfire.mp3"
+SHOTGUN_RELOAD = sound_folder / "shotgun_reload.mp3"
+
+UNIVERSAL_MISS = sound_folder / "miss.mp3"
 pygame.mixer.init()
 def play_music():
     pygame.mixer.music.load(f"{sound_folder}\erlking_theme.mp3")
@@ -250,8 +266,12 @@ class Sword(Weapon):
                     damage1 = random.randint(50, 100)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(LIST_OF_SWORDSOUNDS[0])
+                        s.play()
                         temp_list.append(damage1)
                     else:
+                        s = pygame.mixer.Sound(SWORD_PARRIED)
+                        s.play()
                         print(f"You have been parried.")
                     time.sleep(1)
                 for i in range(len(temp_list)):
@@ -261,6 +281,7 @@ class Sword(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
+                print()
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
@@ -284,8 +305,12 @@ class Sword(Weapon):
                     damage1 = random.randint(10, 30)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(LIST_OF_SWORDSOUNDS[0])
+                        s.play()
                         temp_list.append(damage1)
                     else:
+                        s = pygame.mixer.Sound(SWORD_PARRIED)
+                        s.play()
                         print(f"You have been parried.")
                     time.sleep(1)
                 for i in range(len(temp_list)):
@@ -295,6 +320,7 @@ class Sword(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
+                print()
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
@@ -318,8 +344,12 @@ class Sword(Weapon):
                     damage1 = random.randint(20, 50)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(LIST_OF_SWORDSOUNDS[0])
+                        s.play()
                         temp_list.append(damage1)
                     else:
+                        s = pygame.mixer.Sound(SWORD_PARRIED)
+                        s.play()
                         print(f"You have been parried.")
                     time.sleep(1)
                 for i in range(len(temp_list)):
@@ -329,6 +359,7 @@ class Sword(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
+                print()
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
@@ -352,8 +383,12 @@ class Sword(Weapon):
                     damage1 = random.randint(40, 80)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(LIST_OF_SWORDSOUNDS[0])
+                        s.play()
                         temp_list.append(damage1)
                     else:
+                        s = pygame.mixer.Sound(SWORD_PARRIED)
+                        s.play()
                         print(f"You have been parried.")
                     time.sleep(1)
                 for i in range(len(temp_list)):
@@ -398,6 +433,8 @@ class Gun(Weapon):
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
+                        s = pygame.mixer.Sound(UNIVERSAL_MISS)
+                        s.play()
                     time.sleep(1)
                 for i in range(len(temp_list)):
                     temp_total_damage += temp_list[i]
@@ -410,6 +447,8 @@ class Gun(Weapon):
                 while True:
                     if temp_inp == "Y":
                         print("Reloading...")
+                        s = pygame.mixer.Sound(PISTOL_RELOAD)
+                        s.play()
                         time.sleep(3)
                         break
                     elif temp_inp == "N":
@@ -431,6 +470,8 @@ class Gun(Weapon):
                     damage1 = random.randint(50, 100)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(RIFLE_FIRE)
+                        s.play()
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
@@ -446,7 +487,9 @@ class Gun(Weapon):
                 while True:
                     if temp_inp == "Y":
                         print("Reloading...")
-                        time.sleep(2)
+                        s = pygame.mixer.Sound(RIFLE_RELOAD)
+                        s.play()
+                        time.sleep(3.5)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -470,6 +513,8 @@ class Gun(Weapon):
                     damage1 = random.randint(100, 5000)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(SNIPER_FIRE)
+                        s.play()
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
@@ -485,7 +530,9 @@ class Gun(Weapon):
                 while True:
                     if temp_inp == "Y":
                         print("Reloading...")
-                        time.sleep(3)
+                        s = pygame.mixer.Sound(SNIPER_RELOAD)
+                        s.play()
+                        time.sleep(3.5)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -502,6 +549,8 @@ class Gun(Weapon):
                 chance = 0.45
                 while ammo > 0:
                     ammo -=1
+                    s = pygame.mixer.Sound(SHOTGUN_FIRE)
+                    s.play()
                     for i in range(9):
                         chance_number = round(random.random(), 2)
                         
@@ -524,7 +573,9 @@ class Gun(Weapon):
                 while True:
                     if temp_inp == "Y":
                         print("Reloading...")
-                        time.sleep(3)
+                        s = pygame.mixer.Sound(SHOTGUN_RELOAD)
+                        s.play()
+                        time.sleep(4.5)
                         break
                     elif temp_inp == "N":
                         print("Exiting...")
@@ -738,9 +789,11 @@ class RocketLauncher(Weapon):
 
     def damage(self):
         return self.rocket_launcher_logic()
+    def run(self):
+        self.rocket_launcher_logic
 
 def random_weapon():
-    x = 2
+    x = random.randint(1, 4)
     print(f"You have rolled {x}.")
 
     if x == 1:
