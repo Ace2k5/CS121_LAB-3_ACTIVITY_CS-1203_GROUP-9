@@ -902,7 +902,7 @@ class RocketLauncher(Weapon):
         self.rocket_launcher_logic()
 
 def random_weapon():
-    x = 3
+    x = random.randint(1, 4)
     print(f"You have rolled {x}.")
 
     if x == 1:
