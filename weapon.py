@@ -4,7 +4,7 @@ import time, sys
 from pathlib import Path
 import pygame
 ### ----------IMPORTANT FOR ERLKING GREATSWORD-------- ###
-sound_folder = Path("CS121_LAB-3_ACTIVITY_CS-1203_GROUP-9/sounds")
+sound_folder = Path("CS121_LAB-3_ACTIVITY_CS-1203_GROUP-91/sounds")
 AWAKENING = sound_folder / "Erlking's_AWAKENING.mp3"
 LIST_OF_SOUNDS_ERLKING = [
     sound_folder / "battle1.mp3",
@@ -810,9 +810,8 @@ class RocketLauncher(Weapon):
                     ammo -= 1
                     chance = 0.1
                     chance_number = round(random.random(), 2)
-                    damage1 = random.randint(400, 700)
-                    damage2 = random.randint(100, 200)
                     if chance_number > chance:
+                        damage1 = random.randint(400, 700)
                         print("INCOMING!!!")
                         s = pygame.mixer.Sound(EXPL_LAUNCH)
                         s.play()
@@ -822,6 +821,7 @@ class RocketLauncher(Weapon):
                         s.play()
                         temp_list.append(damage1)
                     else:
+                        damage2 = random.randint(100, 200)
                         print(f"You missed your target! But still dealt {damage2} explosive damage!!")
                         temp_list.append(damage2)
                     time.sleep(2)
