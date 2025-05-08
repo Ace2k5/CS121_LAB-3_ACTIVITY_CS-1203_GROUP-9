@@ -781,7 +781,6 @@ class RocketLauncher(Weapon):
             print(f"Firing {self._rocket_type} rocket...")
             self.ammo -= 1
 
-            # Play launch sound
             if self._rocket_type == "Explosive":
                 pygame.mixer.Sound(str(EXPL_LAUNCH)).play()
             elif self._rocket_type == "Nuclear":
