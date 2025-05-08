@@ -45,6 +45,10 @@ NUCL_LAUNCH = sound_folder / "nuclrocketlauncher.mp3"
 EXPL_LAUNCH = sound_folder / "explrocketlauncher.mp3"
 ROCKET_RELOAD = sound_folder / "rocketlauncher_reload.mp3"
 
+BOW_AIMING = sound_folder / "bow_aiming.mp3"
+BOW_HIT = sound_folder / "bow_hit.mp3"
+BOW_MISS = sound_folder / "bow_miss.mp3"
+
 pygame.mixer.init()
 pygame.mixer.set_num_channels(50)
 def play_music():
@@ -607,19 +611,34 @@ class Bow(Weapon):
                 temp_list = []
                 temp_total_damage = 0
                 chance = 0.2
+                print("putting an arrow...")
+                time.sleep(1)
                 while arrows > 0:
                     arrows -=1
                     chance_number = round(random.random(), 2)
                     damage1 = random.randint(20, 60)
+                    print("Aiming...")
+                    s = pygame.mixer.Sound(BOW_AIMING)
+                    s.play()
+                    while pygame.mixer.get_busy():
+                        time.sleep(0.1)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(BOW_HIT)
+                        s.play()
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.1)
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
-                    print("putting another arrow...")
-                    time.sleep(1)
-                    print("Aiming...")
-                    time.sleep(1)
+                        time.sleep(0.5)
+                        s = pygame.mixer.Sound(BOW_MISS)
+                        s.play()
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.1)
+                    if arrows > 0:
+                        print("putting another arrow...")
+                        time.sleep(1)
                 else:
                     print("No more arrows")
                 for i in range(len(temp_list)):
@@ -649,19 +668,33 @@ class Bow(Weapon):
                 temp_list = []
                 temp_total_damage = 0
                 chance = 0.2
+                print("putting an arrow...")
+                time.sleep(1)
                 while arrows > 0:
                     arrows -=1
                     chance_number = round(random.random(), 2)
                     damage1 = random.randint(60, 80)
+                    print("Aiming...")
+                    s = pygame.mixer.Sound(BOW_AIMING)
+                    s.play()
+                    while pygame.mixer.get_busy():
+                        time.sleep(0.1)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(BOW_HIT)
+                        s.play()
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.1)
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
-                    print("putting another arrow...")
-                    time.sleep(1)
-                    print("Aiming...")
-                    time.sleep(1)
+                        s = pygame.mixer.Sound(BOW_MISS)
+                        s.play()
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.1)
+                    if arrows > 0:
+                        print("putting another arrow...")
+                        time.sleep(1)
                 else:
                     print("No more arrows")
                 for i in range(len(temp_list)):
@@ -691,19 +724,33 @@ class Bow(Weapon):
                 temp_list = []
                 temp_total_damage = 0
                 chance = 0.2
+                print("putting an arrow...")
+                time.sleep(1)
                 while arrows > 0:
                     arrows -=1
                     chance_number = round(random.random(), 2)
                     damage1 = random.randint(80, 100)
+                    print("Aiming...")
+                    s = pygame.mixer.Sound(BOW_AIMING)
+                    s.play()
+                    while pygame.mixer.get_busy():
+                        time.sleep(0.1)
                     if chance_number > chance:
                         print(f"You have inflicted: {damage1} points of damage.")
+                        s = pygame.mixer.Sound(BOW_HIT)
+                        s.play()
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.1)
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
-                    print("putting another arrow...")
-                    time.sleep(1)
-                    print("Aiming...")
-                    time.sleep(1)
+                        s = pygame.mixer.Sound(BOW_MISS)
+                        s.play()
+                        while pygame.mixer.get_busy():
+                            time.sleep(0.1)
+                    if arrows > 0:
+                        print("putting another arrow...")
+                        time.sleep(1)
                 else:
                     print("No more arrows")
                 for i in range(len(temp_list)):
