@@ -4,7 +4,7 @@ import time, sys
 from pathlib import Path
 import pygame
 ### ----------IMPORTANT FOR ERLKING GREATSWORD-------- ###
-sound_folder = Path("CS121_LAB-3_ACTIVITY_CS-1203_GROUP-91/sounds")
+sound_folder = Path("c:/Users/CS121_LAB-3_ACTIVITY_CS-1203_GROUP-9/sounds")
 AWAKENING = sound_folder / "Erlking's_AWAKENING.mp3"
 LIST_OF_SOUNDS_ERLKING = [
     sound_folder / "battle1.mp3",
@@ -821,14 +821,13 @@ class RocketLauncher(Weapon):
                         s.play()
                         temp_list.append(damage1)
                     else:
-                        damage2 = random.randint(100, 200)
-                        print(f"You missed your target! But still dealt {damage2} explosive damage!!")
-                        temp_list.append(damage2)
+                        damage1 = random.randint(100, 200)
+                        print(f"You missed your target! But still dealt {damage1} explosive damage!!")
+                        temp_list.append(damage1)
                     time.sleep(2)
-
-                temp_total_damage = sum(temp_list)
-
-                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
+                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
                 for letter in end_text:
                     sys.stdout.write(letter)
                     sys.stdout.flush()
@@ -877,17 +876,14 @@ class RocketLauncher(Weapon):
                         print(f"BOOOOOOOM!!! You dealt {damage1} nuclear damage!!!")
                         s = pygame.mixer.Sound(EXPLOSION_ROCKET2)
                         s.play()
-                        temp_list.append(damage1)
                     time.sleep(4)
-
-                temp_total_damage = sum(temp_list)
-
+                for i in range(len(temp_list)):
+                    temp_total_damage += temp_list[i]
                 end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
                 for letter in end_text:
-                    sys.stdout.write(letter)
-                    sys.stdout.flush()
-                    time.sleep(0.05)
-
+                        sys.stdout.write(letter)
+                        sys.stdout.flush()
+                        time.sleep(0.05)
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
@@ -902,7 +898,6 @@ class RocketLauncher(Weapon):
                     else:
                         print("Invalid option.")
                         return 0
-
     def run(self):
         self.rocket_launcher_logic()
 
