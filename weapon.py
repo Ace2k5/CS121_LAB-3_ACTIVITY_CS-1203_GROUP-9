@@ -464,8 +464,9 @@ class Gun(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+               
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Reloading...")
                         s = pygame.mixer.Sound(PISTOL_RELOAD)
@@ -477,7 +478,7 @@ class Gun(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
 
         elif self._type_gun == "Rifle":
             while True:
@@ -507,8 +508,9 @@ class Gun(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+                
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Reloading...")
                         s = pygame.mixer.Sound(RIFLE_RELOAD)
@@ -521,7 +523,7 @@ class Gun(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
         
 
         elif self._type_gun == "Sniper":
@@ -550,8 +552,9 @@ class Gun(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
+               
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Reloading...")
                         s = pygame.mixer.Sound(SNIPER_RELOAD)
@@ -563,7 +566,7 @@ class Gun(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
         
 
         elif self._type_gun == "Shotgun":
@@ -598,8 +601,9 @@ class Gun(Weapon):
                     sys.stdout.flush()
                     time.sleep(0.05)
 
-                temp_inp = str(input("Attack one more? (Y/N): ")).strip().upper()
+                
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Reloading...")
                         s = pygame.mixer.Sound(SHOTGUN_RELOAD)
@@ -611,7 +615,7 @@ class Gun(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
     def run(self):
         self.gun_logic()
     
@@ -666,8 +670,8 @@ class Bow(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Getting more arrows...")
                         time.sleep(1)
@@ -677,7 +681,7 @@ class Bow(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
         
         elif self._range == "Medium":
             print("The enemy holds steady at mid range. Keep Alert!")
@@ -723,8 +727,8 @@ class Bow(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Getting more arrows...")
                         time.sleep(1)
@@ -734,7 +738,7 @@ class Bow(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
 
         elif self._range == "High":
             print("The enemy is keeping their distance afar.")
@@ -780,8 +784,8 @@ class Bow(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Getting more arrows...")
                         time.sleep(1)
@@ -791,7 +795,7 @@ class Bow(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
     def run(self):
         self.bow_logic()
 
@@ -833,8 +837,8 @@ class RocketLauncher(Weapon):
                     sys.stdout.write(letter)
                     sys.stdout.flush()
                     time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Reloading...")
                         s = pygame.mixer.Sound(ROCKET_RELOAD)
@@ -846,7 +850,7 @@ class RocketLauncher(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
                     
         elif self._rocket_type == "Nuclear":
             while True:
@@ -885,8 +889,8 @@ class RocketLauncher(Weapon):
                         sys.stdout.write(letter)
                         sys.stdout.flush()
                         time.sleep(0.05)
-                temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
+                    temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                     if temp_inp == "Y":
                         print("Reloading...")
                         s = pygame.mixer.Sound(ROCKET_RELOAD)
@@ -898,12 +902,12 @@ class RocketLauncher(Weapon):
                         return 0
                     else:
                         print("Invalid option.")
-                        return 0
+                        continue
     def run(self):
         self.rocket_launcher_logic()
 
 def random_weapon():
-    x = 2
+    x = random.randint(1, 4)
     print(f"You have rolled {x}.")
 
     if x == 1:
