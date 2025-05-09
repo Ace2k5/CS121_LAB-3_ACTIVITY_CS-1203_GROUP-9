@@ -825,9 +825,10 @@ class RocketLauncher(Weapon):
                         print(f"You missed your target! But still dealt {damage2} explosive damage!!")
                         temp_list.append(damage2)
                     time.sleep(2)
-                for i in range(len(temp_list)):
-                    temp_total_damage += temp_list[i]
-                    end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
+
+                temp_total_damage = sum(temp_list)
+
+                end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
                 for letter in end_text:
                     sys.stdout.write(letter)
                     sys.stdout.flush()
@@ -876,14 +877,17 @@ class RocketLauncher(Weapon):
                         print(f"BOOOOOOOM!!! You dealt {damage1} nuclear damage!!!")
                         s = pygame.mixer.Sound(EXPLOSION_ROCKET2)
                         s.play()
+                        temp_list.append(damage1)
                     time.sleep(4)
-                for i in range(len(temp_list)):
-                    temp_total_damage += temp_list[i]
+
+                temp_total_damage = sum(temp_list)
+
                 end_text = f"You have inflicted a total of: {temp_total_damage} points of damage.\n"
                 for letter in end_text:
-                        sys.stdout.write(letter)
-                        sys.stdout.flush()
-                        time.sleep(0.05)
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(0.05)
+
                 temp_inp = str(input("Attack one more?(Y/N): ")).strip().upper()
                 while True:
                     if temp_inp == "Y":
@@ -898,6 +902,7 @@ class RocketLauncher(Weapon):
                     else:
                         print("Invalid option.")
                         return 0
+
     def run(self):
         self.rocket_launcher_logic()
 
