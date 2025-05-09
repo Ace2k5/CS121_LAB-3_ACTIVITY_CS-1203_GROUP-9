@@ -4,10 +4,10 @@
 
 | Name      | GitHub Username |
 |-----------|-----------------|
-| Luke      | [@lukeusername](https://github.com/lukebaldovino) |
-| Ace       | [@aceusername](https://github.com/Ace2k5) |
-| Sebastian | [@sebastianusername](https://github.com/yyytsaB) |
-| Athena    | [@athenausername](https://github.com/thenaur) |
+| Luke      | [@lukebaldovino](https://github.com/lukebaldovino) |
+| Ace       | [@Ace2k5](https://github.com/Ace2k5) |
+| Sebastian | [@yyytsaB](https://github.com/yyytsaB) |
+| Athena    | [@thenaur](https://github.com/thenaur) |
 
 # Requirements to run the script:
 Pygame
