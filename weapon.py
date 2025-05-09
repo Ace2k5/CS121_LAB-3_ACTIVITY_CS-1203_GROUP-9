@@ -426,6 +426,7 @@ class Sword(Weapon):
                     else:
                         print("Invalid option.")
                         return 0
+                    
 
                 
     def run(self):
@@ -453,8 +454,8 @@ class Gun(Weapon):
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
-                        s = pygame.mixer.Sound(UNIVERSAL_MISS)
-                        s.play()
+                        s = pygame.mixer.Sound(PISTOL_FIRE)
+                        s.play()      
                     time.sleep(0.5)
                 for i in range(len(temp_list)):
                     temp_total_damage += temp_list[i]
@@ -496,7 +497,7 @@ class Gun(Weapon):
                         temp_list.append(damage1)
                     else:
                         print(f"You have missed.")
-                        s = pygame.mixer.Sound(UNIVERSAL_MISS)
+                        s = pygame.mixer.Sound(RIFLE_FIRE)
                         s.play()
                     time.sleep(0.1)
                 for i in range(len(temp_list)):
@@ -902,62 +903,78 @@ class RocketLauncher(Weapon):
         self.rocket_launcher_logic()
 
 def random_weapon():
-    x = random.randint(1, 4)
+    x = 2
     print(f"You have rolled {x}.")
 
     if x == 1:
-        print("You have been given a Sword!")
-        option = ["NONE", "Iron", "Wood", "Copper", "Silver", "Erlking's Greatsword"]
-        temp1 = str(input("Choose a name for the sword: "))
-        if temp1 == "":
-            print("Enter a valid name.")
-            return
-        print(f"You have a total of {len(option) - 1} of choices. Choose one:")
-        for i in range(1, len(option)):
-            print(f"{i} for {option[i]}")
-        temp2 = int(input("Choose between 1-5: "))
-        sword_temp = Sword(temp1, option[temp2])
-        return sword_temp
-    
+        while True:
+            print("You have been given a Sword!")
+            option = ["NONE", "Iron", "Wood", "Copper", "Silver", "Erlking's Greatsword"]
+            temp1 = str(input("Choose a name for the sword: "))
+            if temp1 == "":
+                print("Enter a valid name.")
+                continue
+            while True:
+                print(f"You have a total of {len(option) - 1} of choices. Choose one:")
+                for i in range(1, len(option)):
+                    print(f"{i} for {option[i]}")
+                temp2 = int(input("Choose between 1-5: "))
+                if temp2 > 5 or temp2 < 1:
+                    print("Pick a valid option.")
+                else:
+                    sword_temp = Sword(temp1, option[temp2])
+                    return sword_temp
+            
     elif x == 2:
-        print("You have been given a Gun!")
-        option = ["NONE", "Pistol", "Rifle", "Sniper", "Shotgun"]
-        temp1 = str(input("Choose a name for the gun: "))
-        if temp1 == "":
-            print("Enter a valid name.")
-            return
-        print(f"You have a total of {len(option) - 1} of choices. Choose one:")
-        for i in range(1, len(option)):
-            print(f"{i} for {option[i]}")
-        temp2 = int(input("Choose between 1-4: "))
-        gun_temp = Gun(temp1, option[temp2])
-        return gun_temp
-        
+        while True:
+            print("You have been given a Gun!")
+            option = ["NONE", "Pistol", "Rifle", "Sniper", "Shotgun"]
+            temp1 = str(input("Choose a name for the gun: "))
+            if temp1 == "":
+                print("Enter a valid name.")
+                continue
+            while True:
+                print(f"You have a total of {len(option) - 1} of choices. Choose one:")
+                for i in range(1, len(option)):
+                    print(f"{i} for {option[i]}")
+                temp2 = int(input("Choose between 1-4: "))
+                if temp2 > 4 or temp2 < 1:
+                    print("Pick a valid option.")
+                else:                    
+                    gun_temp = Gun(temp1, option[temp2])
+                    return gun_temp
+            
     elif x == 3:
-        print("You have been given a Rocket Launcher!")
-        option = ["NONE", "Explosive", "Nuclear"]
-        temp1 = str(input("Choose a name for the rocket launcher: "))
-        if temp1 == "":
-            print("Enter a valid name.")
-            return
-        print("Choose a rocket type:")
-        for i in range(1, len(option)):
-            print(f"{i} for {option[i]}")
-        temp2 = int(input("Choose 1 or 2: "))
-        rocket_temp = RocketLauncher(temp1, option[temp2])
-        return rocket_temp
+        while True:
+            print("You have been given a Rocket Launcher!")
+            option = ["NONE", "Explosive", "Nuclear"]
+            temp1 = str(input("Choose a name for the rocket launcher: "))
+            if temp1 == "":
+                print("Enter a valid name.")
+                continue
+            while True:
+                print("Choose a rocket type:")
+                for i in range(1, len(option)):
+                    print(f"{i} for {option[i]}")
+                temp2 = int(input("Choose 1 or 2: "))
+                if temp2 > 2 or temp2 < 1:
+                    print("Pick a valid option.")
+                else:
+                    rocket_temp = RocketLauncher(temp1, option[temp2])
+                    return rocket_temp
     
     elif x == 4:
-         print("You have been given a Bow and Arrows!")
-         option = ["NONE", "Low", "Medium", "High"]
-         temp_range = ["Low", "Medium", "High"]
-         temp1 = str(input("Choose a name for the bow and arrow: "))
-         if temp1 == "":
-            print("Enter a valid name.")
-            return
-         temp2 = random.choice(temp_range)
-         bow_temp = Bow(temp1, temp2)
-         return bow_temp
+        while True:
+            print("You have been given a Bow and Arrows!")
+            option = ["NONE", "Low", "Medium", "High"]
+            temp_range = ["Low", "Medium", "High"]
+            temp1 = str(input("Choose a name for the bow and arrow: "))
+            if temp1 == "":
+                print("Enter a valid name.")
+                continue
+            temp2 = random.choice(temp_range)
+            bow_temp = Bow(temp1, temp2)
+            return bow_temp
     
 
 a = random_weapon()
