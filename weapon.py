@@ -4,7 +4,7 @@ import time, sys
 from pathlib import Path
 import pygame
 ### ----------IMPORTANT FOR ERLKING GREATSWORD-------- ###
-sound_folder = Path("c:/Users/CS121_LAB-3_ACTIVITY_CS-1203_GROUP-9/sounds")
+sound_folder = Path(__file__).parent / "sounds"
 AWAKENING = sound_folder / "Erlking's_AWAKENING.mp3"
 LIST_OF_SOUNDS_ERLKING = [
     sound_folder / "battle1.mp3",
