@@ -10,5 +10,8 @@
 | Athena    | [@thenaur](https://github.com/thenaur) |
 
 # Requirements to run the script:
-Pygame
-install via: pip install pygame
+**Pygame**
+install via: 
+```bash
+pip install pygame
+```
