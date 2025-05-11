@@ -62,7 +62,7 @@ This program is not possible without:
 <li><a href = https://www.pygame.org/news>Pygame</a></li>
 <li><a href = https://chatgpt.com/>ChatGPT</a></li>
 <li><a href = https://github.com/features/copilot>Github Copilot</a></li>
-
+<li><a href = https://www.w3schools.com/python/default.asp>W3school</a></li>
 
 
 
