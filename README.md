@@ -32,11 +32,21 @@
 
 2. Run the file weapon.py (make sure you have your sounds on 🔊🔊)
 
-3. The program will randomly choose a weapon from sword, gun, bow, and rocket launcher
+3. The program will randomly choose a weapon from sword, gun, bow, and rocket launcher. Type a name for the given randomized weapon
+     
+
+      ![image](https://github.com/Ace2k5/CS121_LAB-3_ACTIVITY_CS-1203_GROUP-9/blob/master/images/Screenshot%202025-05-11%20073308.png?raw=true)
     
-4. Type a name for the given randomized weapon
-5. Choose a material, range, or weapon type to proceed with the weapon's attack
-6. Once to attack is done, you have 2 choices:
+
+
+
+
+4. Choose a material, range, or weapon type to proceed with the weapon's attack
+
+
+
+
+5. Once to attack is done, you have 2 choices:
     
     Select Y to reload and attack once more
     
@@ -45,6 +55,8 @@
 
 ## Acknowledgement
 This program is not possible without:
-<li> Chat
+<li> ChatGPT
+<li> Pygame
+<li> Github Copilot
 
 
